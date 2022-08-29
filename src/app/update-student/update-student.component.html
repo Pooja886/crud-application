@@ -1,0 +1,28 @@
+
+<div class="header">
+    <h3 class="text-center">UPDATE STUDENT DETAILS</h3>
+</div>
+<div class="col-md-6 offset-md-3">
+<form (ngSubmit)="onSubmit()">
+    <div class="mb-3" form="form-group">
+      <label  >Name</label>
+      <input type="text" class="form-control" id="name" 
+      [(ngModel)]="student.name" name="name">
+    </div>
+    <div class="mb-3" form="form-group">
+      <label >Email Id</label>
+      <input type="text" class="form-control" id="email" [(ngModel)]="student.email" name="emailid">
+    </div>
+    <div class="mb-3" form="form-group">
+        <label >City</label>
+        <input type="text" class="form-control" id="city" [(ngModel)]="student.city" name="city" >
+      </div>
+      <div class="mb-3" form="form-group">
+        <label >Phone Number</label>
+        <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="student.phonenumber" name="phonenumber">
+      </div>
+      <div class="button">
+<button  class="btn btn-primary" type="submit" >Submit</button>
+</div>
+  </form>
+</div>
