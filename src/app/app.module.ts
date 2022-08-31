@@ -10,6 +10,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateStudentComponent } from './update-student/update-student.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { StudentDetailsComponent } from './student-details/student-details.compo
     AddStudentComponent,
     UpdateStudentComponent,
     StudentDetailsComponent,
+    LoginComponent,
    
   ],
   imports: [

@@ -23,7 +23,16 @@
     <span *ngIf="email['errors'] && email['errors']['required']">This field is required</span>
     <span *ngIf="email['errors'] && email['errors']['pattern']">Enter a valid Email.</span>
   </div>
-        
+
+  <div class="mb-3" form="form-group">
+    <label >Password</label>
+    <input type="text" #password="ngModel" required [class.is-invalid]="password.invalid && password.touched" pattern="[a-zA-Z'-'\s]*"
+     class="form-control" id="password" [(ngModel)]="student.password" name="password" >
+     <div *ngIf="password.invalid && password.touched" class="text-danger">
+      <span *ngIf="password['errors'] && password['errors']['required']">This field is required</span>
+      <span *ngIf="password['errors'] && password['errors']['pattern']">Password does not match the pattern.</span>
+    </div>
+  </div>
     </div>
     <div class="mb-3" form="form-group">
         <label >City</label>

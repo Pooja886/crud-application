@@ -10,9 +10,7 @@
       <div *ngIf="name.invalid && name.touched" class="text-danger">
         <span *ngIf="name['errors'] && name['errors']['required']">This field is required</span>
         <span *ngIf="name['errors'] && name['errors']['pattern']">Enter a valid Name</span>
-      </div>
-     
-     
+      </div> 
     </div>
 
     <div class="mb-3" form="form-group">
@@ -25,6 +23,15 @@
       </div>
     </div>
 
+    <div class="mb-5" form="form-group">
+      <label >Password</label>
+      <input type="text" #password="ngModel" required [class.is-invalid]="password.invalid && password.touched" pattern=""
+       class="form-control" id="password" [(ngModel)]="student.password" name="password" autocomplete="off">
+       <div *ngIf="password.invalid && password.touched" class="text-danger">
+        <span *ngIf="password['errors'] && password['errors']['required']">This field is required</span>
+        <span *ngIf="password['errors'] && password['errors']['pattern']">Password does not match the pattern.</span>
+      </div>
+    </div>
     <div class="mb-3" form="form-group">
         <label >City</label>
         <input type="text" #city="ngModel" required [class.is-invalid]="city.invalid && city.touched" pattern="[a-zA-Z'-'\s]*"
