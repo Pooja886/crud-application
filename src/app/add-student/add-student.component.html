@@ -2,25 +2,51 @@
     <h3 class="text-center">CREATE STUDENT</h3>
 </div>
 <div class="col-md-6 offset-md-3">
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" >
     <div class="mb-3" form="form-group">
       <label  >Name</label>
-      <input type="text" class="form-control" id="name" 
-      [(ngModel)]="student.name" name="name">
+      <input type="text" #name="ngModel" required [class.is-invalid]="name.invalid && name.touched" pattern="[a-zA-Z'-'\s]*"
+      class="form-control" id="name" [(ngModel)]="student.name" name="name" >
+      <div *ngIf="name.invalid && name.touched" class="text-danger">
+        <span *ngIf="name['errors'] && name['errors']['required']">This field is required</span>
+        <span *ngIf="name['errors'] && name['errors']['pattern']">Enter a valid Name</span>
+      </div>
+     
+     
     </div>
+
     <div class="mb-3" form="form-group">
       <label >Email Id</label>
-      <input type="text" class="form-control" id="email" [(ngModel)]="student.email" name="emailid">
+      <input type="text" #email="ngModel" required [class.is-invalid]="email.invalid && email.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+       class="form-control" id="email" [(ngModel)]="student.email" name="emailid" >
+       <div *ngIf="email.invalid && email.touched" class="text-danger">
+        <span *ngIf="email['errors'] && email['errors']['required']">This field is required</span>
+        <span *ngIf="email['errors'] && email['errors']['pattern']">Enter a valid Email.</span>
+      </div>
     </div>
+
     <div class="mb-3" form="form-group">
         <label >City</label>
-        <input type="text" class="form-control" id="city" [(ngModel)]="student.city" name="city" >
+        <input type="text" #city="ngModel" required [class.is-invalid]="city.invalid && city.touched" pattern="[a-zA-Z'-'\s]*"
+        class="form-control"id="city" [(ngModel)]="student.city" name="city" autocomplete="off" >
+        <div *ngIf="city.invalid && city.touched" class="text-danger">
+          <span *ngIf="city['errors'] && city['errors']['required']">This field is required</span>
+          <span *ngIf="city['errors'] && city['errors']['pattern']">Enter a valid Name.</span>
+        </div>
       </div>
+
+
       <div class="mb-3" form="form-group">
         <label >Phone Number</label>
-        <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="student.phonenumber" name="phonenumber">
+        <input type="text" #phone="ngModel" required [class.is-invalid]="phone.invalid && phone.touched" pattern="^\d{10}$"
+         class="form-control" id="phoneNumber" [(ngModel)]="student.phonenumber" name="phonenumber" >
+         <div *ngIf="phone.invalid && phone.touched" class="text-danger">
+          <span *ngIf="phone['errors'] && phone['errors']['required']">This field is required</span>
+          <span *ngIf="phone['errors'] && phone['errors']['pattern']">Enter a valid phone Number.</span>
+        </div>
+  
       </div>
-      <div class="button">
+<div class="button">
 <button  class="btn btn-primary" type="submit" >Submit</button>
 </div>
   </form>
