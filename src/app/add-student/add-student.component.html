@@ -1,8 +1,8 @@
 <div class="header">
-    <h3 class="text-center">CREATE STUDENT</h3>
+    <h3 class="text-center">Register Here</h3>
 </div>
 <div class="col-md-6 offset-md-3">
-<form (ngSubmit)="onSubmit()" >
+<form (ngSubmit)="onSubmit()" #studentForm="ngForm" >
     <div class="mb-3" form="form-group">
       <label  >Name</label>
       <input type="text" #name="ngModel" required [class.is-invalid]="name.invalid && name.touched" pattern="[a-zA-Z'-'\s]*"
@@ -25,7 +25,7 @@
 
     <div class="mb-5" form="form-group">
       <label >Password</label>
-      <input type="text" #password="ngModel" required [class.is-invalid]="password.invalid && password.touched" pattern=""
+      <input type="text" #password="ngModel" required [class.is-invalid]="password.invalid && password.touched" pattern="[a-zA-Z'-'\s]*"
        class="form-control" id="password" [(ngModel)]="student.password" name="password" autocomplete="off">
        <div *ngIf="password.invalid && password.touched" class="text-danger">
         <span *ngIf="password['errors'] && password['errors']['required']">This field is required</span>
@@ -54,7 +54,7 @@
   
       </div>
 <div class="button">
-<button  class="btn btn-primary" type="submit" >Submit</button>
+<button  [disabled]="studentForm.form.invalid" class="btn btn-primary" type="submit" >Submit</button>
 </div>
   </form>
 </div>
