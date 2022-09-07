@@ -7,11 +7,16 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { StudentService } from './student.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AddStudentComponent } from './add-student/add-student.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,  } from '@angular/forms';
 import { UpdateStudentComponent } from './update-student/update-student.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { NewAdminListComponent } from './new-admin-list/new-admin-list.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+
+
 
 
 @NgModule({
@@ -23,18 +28,25 @@ import { HeaderComponent } from './header/header.component';
     StudentDetailsComponent,
     LoginComponent,
     HeaderComponent,
+    HomepageComponent,
+    NewAdminListComponent,
+    WelcomeComponent
+    
+    
+   
    
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
     
   ],
   providers: [
-    StudentService,
-    HttpClientModule
+    StudentService
+ 
+   
   ],
   bootstrap: [AppComponent]
 })

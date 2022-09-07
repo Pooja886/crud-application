@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div class="mb-5" form="form-group">
+    <div class="mb-3" form="form-group">
       <label >Password</label>
       <input type="text" #password="ngModel" required [class.is-invalid]="password.invalid && password.touched" pattern="[a-zA-Z'-'\s]*"
        class="form-control" id="password" [(ngModel)]="student.password" name="password" autocomplete="off">
@@ -32,6 +32,8 @@
         <span *ngIf="password['errors'] && password['errors']['pattern']">Password does not match the pattern.</span>
       </div>
     </div>
+
+
     <div class="mb-3" form="form-group">
         <label >City</label>
         <input type="text" #city="ngModel" required [class.is-invalid]="city.invalid && city.touched" pattern="[a-zA-Z'-'\s]*"
@@ -53,8 +55,21 @@
         </div>
   
       </div>
+
+      <div class="mb-3" form="form-group" >
+        <label> Role </label>
+
+        <select class="form-select " #Role="ngModel" name="role" [(ngModel)]="student.role">
+            <option value="none" selected disabled >Select Role</option>
+            <option *ngFor="let role of Roles" [value]="role"> {{ role }}</option>
+        </select>
+    </div>
 <div class="button">
 <button  [disabled]="studentForm.form.invalid" class="btn btn-primary" type="submit" >Submit</button>
 </div>
+
   </form>
+  <div *ngIf="registrationError" class="alert alert-danger my-3 text-center p-1" >
+    {{registrationError}}
+  </div>
 </div>

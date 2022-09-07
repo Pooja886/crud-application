@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { StudentService } from '../student.service';
 
 import { AddStudentComponent } from './add-student.component';
 
@@ -8,7 +11,13 @@ describe('AddStudentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddStudentComponent ]
+      declarations: [ AddStudentComponent ],
+      providers:[StudentService],
+      imports : [
+        HttpClientModule,
+        FormsModule
+  
+      ]
     })
     .compileComponents();
 

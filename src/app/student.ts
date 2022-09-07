@@ -5,4 +5,8 @@ export class Student {
     password!:string;
     city!: string;
     phonenumber!: string;
+    role!:string;
+    approved!:boolean;
+   
+    approvedStatus !: string;
 }

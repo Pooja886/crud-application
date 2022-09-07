@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
     private router : Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('loggedornot')){
+      this.router.navigate(["/homepage"]);
+    }
   }
 
  
@@ -26,8 +29,9 @@ export class LoginComponent implements OnInit {
     this.stuservice.loginUser(this.student.email , this.student.password).subscribe(data =>
       {
         console.log(data);
-        
-        this.router.navigate(['/header']);
+        localStorage.setItem('StudentData',JSON.stringify(data));
+        localStorage.setItem('loggedornot','true');
+        this.router.navigate(['/homepage']);
       },
       error =>{
         console.log(error)

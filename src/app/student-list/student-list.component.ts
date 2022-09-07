@@ -10,27 +10,34 @@ import { StudentService } from '../student.service';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
-
-  students:Student[]=[];
+  savedUser : any;
+  students : Student[]=[];
   id!: number;
   constructor(private stuservice:StudentService,
     private router:Router) { }
 
   ngOnInit(): void {
-    this.getStudentList();
+    this.savedUser=this.stuservice.getLoggedInUser();
+    this.getUsers();
   }
-  private getStudentList(){
-    this.stuservice.getStudentList().subscribe((data) => {this.students= data});
+  private getUsers(){
+
+    this.stuservice.getApprovedUsers(this.savedUser.id).subscribe(data => {
+      this.students = data;
+    },
+    error => console.log(error));
   }
+  
   viewDetails(id:number){
-    this.router.navigate(["student-details",id]);
+    this.router.navigate(["/homepage/student-details",id]);
   }
   updateStudent(id:number){
-    this.router.navigate(["update-student",id]);
+    this.router.navigate(["/homepage/update-student",id]);
   }
-  deleteStudent(id:number){
+  ok(id:number){
     return this.stuservice.studentDelete(id).subscribe(data => {console.log(data);
-    this.getStudentList();}
+    this.getUsers();}
+    
   )
   }
 

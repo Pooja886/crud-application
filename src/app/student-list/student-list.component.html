@@ -1,24 +1,55 @@
 <h1 class="text-center">Student Details</h1>
-<table class="table table-striped">
+<div>
+  <button *ngIf="savedUser.role == 'Admin' || savedUser.role == 'Super Admin'" routerLink="/homepage/add-student" routerLinkActive="active" style="margin-left: 1400px; "class="btn btn-warning">
+    Add Student</button>
+  </div>
+<table  style="margin: 0px 20px;"class="table table-striped">
     <thead>
         <tr>
             <th>Name</th>
             <th>Email Id</th>
             <th>City</th>
             <th>Phone Number</th>
+            <th>Role</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let student of students">
-            <td>{{student.name}}</td>
-            <td>{{student.email}}</td>
-            <td>{{student.city}}</td>
-            <td>{{student.phonenumber}}</td>
+        <tr *ngFor="let s of students">
+            <td>{{s.name}}</td>
+            <td>{{s.email}}</td>
+            <td>{{s.city}}</td>
+            <td>{{s.phonenumber}}</td>
+            <td>{{s.role}}</td>
             <td>
-                <button (click)= "updateStudent(student.id)"class="btn btn-info" style="margin-right: 20px;">Update</button>
-                <button (click)= "deleteStudent(student.id)"class="btn btn-danger" style="margin-right: 5px;">Delete</button>
-                <button (click)="viewDetails(student.id)" class="btn btn-primary" style="margin-left: 10px;">View</button>
+            <span *ngIf="savedUser.role == 'Admin' || savedUser.role == 'Super Admin'">
+                <button (click)= "updateStudent(s.id)"class="btn btn-info" style="margin-right: 20px;">Update</button>
+                <!-- Button trigger modal -->
+               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+  
+              <!-- Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        Are you sure  you want to delete student detail?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)= "ok(s.id)" data-bs-dismiss="modal" type="button" class="btn btn-primary">ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
+
+  
+                
+                <button (click)="viewDetails(s.id)" class="btn btn-primary" style="margin-left: 10px;">View</button>
             </td>
         </tr>
 

@@ -1,0 +1,82 @@
+
+<div class="d-flex justify-content-between p-2">
+    <h2>Admin login Request</h2>
+
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email-Id</th>
+            <th>City</th>
+            <th>Phone Number</th>
+            <th>Status</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of student">
+            <td>{{student.name}}</td>           
+            <td>{{student.email}}</td>
+            <td>{{student.city}}</td>
+            <td>{{student.phonenumber}}</td>
+            <td>{{student.approvedStatus}}</td>
+            <td>{{student.role}}</td>
+            <td>
+
+                <div >
+                    
+
+                        <button class="btn btn-success me-2" (click)="openPopup(student, 'APPROVE')">Approve</button>
+                    
+                    
+                        <button class="btn btn-secondary me-2" (click)="openPopup(student, 'REJECT')">
+                            Reject
+                        </button>
+
+                        <button class="btn btn-danger me-2" (click)="openPopup(student, 'DELETE')">
+                            Delete 
+                        </button>
+                    </div>
+
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="modal customModal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-flex">
+                <h4 class="modal-title">
+                    Are You sure?
+                </h4>
+
+                
+            </div>
+            <div class="modal-body">
+                <p>Do you want to continue?</p>
+
+            </div>
+            <div class="modal-footer">
+                
+
+                    
+                <button type="button" class="btn btn-secondary" (click)="closePopup()">
+                    Close
+                </button>
+                <button *ngIf="action"
+                (click)="handleAction()"
+                type="button" [ngClass]="{ 'btn-dark' : action == 'REJECT', 'btn-success' : action == 'APPROVE', 'btn-danger' : action == 'DELETE'}" 
+                class="btn" >
+
+                    {{statusMap[action]['title']}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

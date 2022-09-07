@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+
 import { Student } from './student';
-import { StudentDetailsComponent } from './student-details/student-details.component';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,9 @@ export class StudentService {
   getStudentList():Observable<Student[]>{
 
     return  this.http.get<Student[]>(this._url);
+  }
+  getApprovedUsers(currentUserId : number): Observable<Student[]>{
+    return this.http.get<Student[]>(`${this._url}/getApprovedUsers/${currentUserId}`)
   }
   addStudent(stduent:Student):Observable<object>{
    return  this.http.post(this._url,stduent);
@@ -30,11 +33,36 @@ export class StudentService {
     return this.http.delete<Student>(`${this._url}/${id}`);
   }
 
-loginUser(email: String, password: String): Observable<Object>{
+loginUser(email: string, password: string): Observable<Object>{
     
   return this.http.post(`${this._url}/login`, {
     email : email ,
     password : password
   })
 }
+
+getLoggedInUser(){
+  const userData = localStorage.getItem('StudentData')
+  if (!userData) return null;
+
+  return JSON.parse(userData);
 }
+
+getAdminList():Observable<Student[]>{
+  return this.http.get<Student[]>(`${this._url}/adminUser`);
+}
+
+
+approveAdmin(id : number) : Observable<object>{
+  return this.http.post(`${this._url}/${id}/approve`, {});
+
+}  
+denyAdmin(id : number) : Observable<object>{
+  return this.http.post(`${this._url}/${id}/deny`, {});
+
+}  
+}
+
+
+
+
